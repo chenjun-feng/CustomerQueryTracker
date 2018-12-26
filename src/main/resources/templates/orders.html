@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Framework</title>
+</head>
+<body>
+    <div align="center">
+
+        <h1>Order List</h1>
+
+        <table border="1" cellpadding="8" style="border-collapse:collapse">
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Customer ID</th>
+            </tr>
+            <tr th:each="order: ${orders}">
+                <td th:text="${order.o_id}">123</td>
+                <td th:text="${order.o_date}">2018-12-24</td>
+                <td th:text="'$' + ${order.o_amount}">$999</td>
+                <td th:text="${order.o_customer.getC_id()}">101</td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+</html>
