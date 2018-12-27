@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Framework</title>
+</head>
+<body>
+    <div align="center">
+
+        <h1>Employee List</h1>
+
+        <table border="1" cellpadding="8" style="border-collapse:collapse">
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Role</th>
+                <th>Workload</th>
+            </tr>
+            <tr th:each="employee: ${employees}">
+                <td th:text="${employee.e_id}">123</td>
+                <td th:text="${employee.e_name}">Saran</td>
+                <td th:text="${employee.e_email}">saran@cogent.com</td>
+                <td th:text="${employee.department}">Technology Department</td>
+                <td th:text="${employee.e_role}">Staff</td>
+                <td th:text="${employee.e_workload}">12</td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+</html>
