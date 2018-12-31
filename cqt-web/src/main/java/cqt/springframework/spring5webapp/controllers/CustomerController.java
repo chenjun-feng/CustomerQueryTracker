@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/customers")
 @Controller
 public class CustomerController {
 
@@ -17,9 +18,9 @@ public class CustomerController {
     }
 
     // == request handlers ==
-    @RequestMapping("/customers")
+    @RequestMapping({"", "/", "/index", "/index.html"})
     public String getCustomers(Model model) {
         model.addAttribute("customers", customerRepository.findAll());
-        return "customers"; // return a view
+        return "customers/index"; // return a view
     }
 }

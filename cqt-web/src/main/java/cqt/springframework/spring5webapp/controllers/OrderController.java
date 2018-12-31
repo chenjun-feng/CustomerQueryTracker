@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/orders")
 @Controller
 public class OrderController {
 
@@ -17,9 +18,9 @@ public class OrderController {
     }
 
     // == request handler ==
-    @RequestMapping("/orders")
+    @RequestMapping({"", "/", "/index", "/index.html"})
     public String getOrders(Model model) {
         model.addAttribute("orders", orderRepository.findAll());
-        return "orders";
+        return "orders/index";
     }
 }

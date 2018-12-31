@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Query List</title>
+</head>
+<body>
+    <div align="center">
+
+    <h1>List of Queries</h1>
+
+    <table border="1" cellpadding="8" style="border-collapse:collapse">
+        <tr>
+            <th>Query ID</th>
+            <th>Status</th>
+            <th>Type ID</th>
+            <th>Customer ID</th>
+            <th>Order ID</th>
+            <th>Employee ID</th>
+            <th>Feedback</th>
+        </tr>
+        <tr th:each="query: ${queries}">
+            <td th:text="${query.q_id}">123</td>
+            <td th:text="${query.q_status}">True</td>
+            <td th:text="${query.q_type.getT_id()}">3</td>
+            <td th:text="${query.q_customer.getC_id()}">1</td>
+            <td th:text="${query.q_order.getO_id()}">2</td>
+            <td th:text="${query.q_employee.getE_id()}">5</td>
+            <td th:text="${query.q_feedback}">-1</td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

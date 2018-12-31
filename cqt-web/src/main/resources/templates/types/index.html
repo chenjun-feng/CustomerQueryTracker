@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Type List</title>
+</head>
+<body>
+    <div align="center">
+
+    <h1>List of Query Types</h1>
+
+    <table border="1" cellpadding="8" style="border-collapse:collapse">
+        <tr>
+            <th>Type ID</th>
+            <th>Type Name</th>
+            <th>Department</th>
+        </tr>
+        <tr th:each="type: ${types}">
+            <td th:text="${type.t_id}">123</td>
+            <td th:text="${type.t_name}">Saran</td>
+            <td th:text="${type.department}">Technology Department</td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

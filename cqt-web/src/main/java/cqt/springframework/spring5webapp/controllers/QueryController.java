@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/queries")
 @Controller
 public class QueryController {
 
@@ -17,9 +18,9 @@ public class QueryController {
     }
 
     // == request handler ==
-    @RequestMapping("/queries")
+    @RequestMapping({"", "/", "/index", "/index.html"})
     public String getQueries(Model model) {
         model.addAttribute("queries", queryRepository.findAll());
-        return "queries";
+        return "queries/index";
     }
 }

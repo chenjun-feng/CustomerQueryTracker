@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/employees")
 @Controller
 public class EmployeeController {
 
@@ -17,9 +18,9 @@ public class EmployeeController {
     }
 
     // == request handler ==
-    @RequestMapping("/employees")
+    @RequestMapping({"", "/", "/index", "/index.html"})
     public String getEmployees(Model model) {
         model.addAttribute("employees", employeeRepository.findAll());
-        return "employees";
+        return "employees/index";
     }
 }

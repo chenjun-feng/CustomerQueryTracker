@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/types")
 @Controller
 public class TypeController {
 
@@ -17,9 +18,9 @@ public class TypeController {
     }
 
     // == request handler ==
-    @RequestMapping("/types")
+    @RequestMapping({"", "/", "/index", "/index.html"})
     public String getTypes(Model model) {
         model.addAttribute("types", typeRepository.findAll());
-        return "types";
+        return "types/index";
     }
 }
