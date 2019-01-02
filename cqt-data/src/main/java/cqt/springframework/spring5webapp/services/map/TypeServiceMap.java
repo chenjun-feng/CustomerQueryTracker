@@ -1,11 +1,13 @@
 package cqt.springframework.spring5webapp.services.map;
 
 import cqt.springframework.spring5webapp.model.Type;
-import cqt.springframework.spring5webapp.services.CrudService;
+import cqt.springframework.spring5webapp.services.TypeService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class TypeServiceMap extends AbstractMapService<Type, Long> implements CrudService<Type, Long> {
+@Service
+public class TypeServiceMap extends AbstractMapService<Type, Long> implements TypeService {
 
     @Override
     public Set<Type> findAll() {

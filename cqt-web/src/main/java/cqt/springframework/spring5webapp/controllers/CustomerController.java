@@ -1,6 +1,6 @@
 package cqt.springframework.spring5webapp.controllers;
 
-import cqt.springframework.spring5webapp.repositories.CustomerRepository;
+import cqt.springframework.spring5webapp.services.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CustomerController {
 
     // == fields ==
-    private CustomerRepository customerRepository;
+    private final CustomerService customerService;
 
     // == constructor ==
-    public CustomerController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     // == request handlers ==
     @RequestMapping({"", "/", "/index", "/index.html"})
     public String getCustomers(Model model) {
-        model.addAttribute("customers", customerRepository.findAll());
-        return "customers/index"; // return a view
+        model.addAttribute("customers", customerService.findAll());
+        return "customers/index";
     }
 }

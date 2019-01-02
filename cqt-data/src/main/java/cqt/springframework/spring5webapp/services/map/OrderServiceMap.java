@@ -1,11 +1,13 @@
 package cqt.springframework.spring5webapp.services.map;
 
 import cqt.springframework.spring5webapp.model.Order;
-import cqt.springframework.spring5webapp.services.CrudService;
+import cqt.springframework.spring5webapp.services.OrderService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class OrderServiceMap extends AbstractMapService<Order, Long> implements CrudService<Order, Long> {
+@Service
+public class OrderServiceMap extends AbstractMapService<Order, Long> implements OrderService {
 
     @Override
     public Set<Order> findAll() {

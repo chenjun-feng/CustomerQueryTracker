@@ -1,11 +1,13 @@
 package cqt.springframework.spring5webapp.services.map;
 
 import cqt.springframework.spring5webapp.model.Customer;
-import cqt.springframework.spring5webapp.services.CrudService;
+import cqt.springframework.spring5webapp.services.CustomerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class CustomerServiceMap extends AbstractMapService<Customer, Long> implements CrudService<Customer, Long> {
+@Service
+public class CustomerServiceMap extends AbstractMapService<Customer, Long> implements CustomerService {
 
     @Override
     public Set<Customer> findAll() {
@@ -30,5 +32,10 @@ public class CustomerServiceMap extends AbstractMapService<Customer, Long> imple
     @Override
     public void deleteById(Long id) {
         super.deleteById(id);
+    }
+
+    @Override
+    public Customer findByName(String name) {
+        return null;
     }
 }

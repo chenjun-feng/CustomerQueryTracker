@@ -1,11 +1,13 @@
 package cqt.springframework.spring5webapp.services.map;
 
 import cqt.springframework.spring5webapp.model.Query;
-import cqt.springframework.spring5webapp.services.CrudService;
+import cqt.springframework.spring5webapp.services.QueryService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class QueryServiceMap extends AbstractMapService<Query, Long> implements CrudService<Query, Long> {
+@Service
+public class QueryServiceMap extends AbstractMapService<Query, Long> implements QueryService {
 
     @Override
     public Set<Query> findAll() {
