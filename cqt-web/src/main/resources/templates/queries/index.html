@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'queries')}">
 <head>
     <meta charset="UTF-8">
     <title>Query List</title>
 </head>
 <body>
+<!--/*@thymesVar id="query" type="cqt.springframework.spring5webapp.model.Query"*/-->
     <div align="center">
 
     <h1>List of Queries</h1>
 
-    <table border="1" cellpadding="8" style="border-collapse:collapse">
+    <table class="table table-striped">
         <tr>
             <th>Query ID</th>
             <th>Status</th>

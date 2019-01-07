@@ -1,0 +1,2 @@
+insert into customers (c_id, c_email, c_name, c_password, c_status) values (111, "foo@cogent.com", "foo", "foopassword", 1);
+insert into customers (c_id, c_email, c_name, c_password, c_status) values (222, "bar@cogent.com", "bar", "barpassword", 1);

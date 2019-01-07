@@ -2,12 +2,14 @@ package cqt.springframework.spring5webapp.services.map;
 
 import cqt.springframework.spring5webapp.model.Customer;
 import cqt.springframework.spring5webapp.services.CustomerService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class CustomerServiceMap extends AbstractMapService<Customer, Long> implements CustomerService {
+@Profile({"default", "map"})
+public class CustomerMapService extends AbstractMapService<Customer, Long> implements CustomerService {
 
     @Override
     public Set<Customer> findAll() {
@@ -35,7 +37,11 @@ public class CustomerServiceMap extends AbstractMapService<Customer, Long> imple
     }
 
     @Override
-    public Customer findByName(String name) {
-        return null;
+    public Customer findByCName(String name) {
+        return this.findAll()
+                .stream()
+                .filter(customer -> customer.getCName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
 }

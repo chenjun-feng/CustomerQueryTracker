@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 <head>
     <meta charset="UTF-8">
     <title>Customer Query Tracker</title>
 </head>
 <body>
-    <h1 th:text="'Index Page'">Index Page</h1>
+    <div class="row">
+        <div class="col-md-12" align="center">
+            <img class="img-responsive" src="../static/resources/images/cogent-logo.jpg" th:src="@{/resources/images/cogent-logo.jpg}"/>
+        </div>
+    </div>
 
+    <br>
+
+    <h1 align = "center" th:text="#{welcome}">Welcome</h1>
 </body>
 </html>

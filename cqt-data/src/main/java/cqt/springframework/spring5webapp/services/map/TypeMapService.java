@@ -2,12 +2,14 @@ package cqt.springframework.spring5webapp.services.map;
 
 import cqt.springframework.spring5webapp.model.Type;
 import cqt.springframework.spring5webapp.services.TypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class TypeServiceMap extends AbstractMapService<Type, Long> implements TypeService {
+@Profile({"default", "map"})
+public class TypeMapService extends AbstractMapService<Type, Long> implements TypeService {
 
     @Override
     public Set<Type> findAll() {

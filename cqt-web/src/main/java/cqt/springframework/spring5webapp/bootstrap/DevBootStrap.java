@@ -33,13 +33,13 @@ public class DevBootStrap implements ApplicationListener<ContextRefreshedEvent> 
 
     private void initData() {
         Customer c1 = new Customer();
-        c1.setC_name("Chen");
+        c1.setCName("Chen");
         c1.setC_password("chen123");
         c1.setC_email("chen@cogent.com");
         c1.setC_status(true);
 
         Customer c2 = new Customer();
-        c2.setC_name("Sunit");
+        c2.setCName("Sunit");
         c2.setC_password("sunit123");
         c2.setC_email("sunit@cogent.com");
         c2.setC_status(true);
@@ -59,10 +59,10 @@ public class DevBootStrap implements ApplicationListener<ContextRefreshedEvent> 
         t1.setDepartment("Customer Service Department");
 
         Employee e1 = new Employee();
-        e1.setE_name("John");
+        e1.setEName("John");
         e1.setE_password("john123");
         e1.setE_email("john@amazon.com");
-        e1.setDepartment("Customer Service Department");
+        e1.setDepartment(Department.CUSTOMER_SERVICE_DEPARTMENT);
         e1.setE_role("staff");
         e1.setE_workload(1);
 

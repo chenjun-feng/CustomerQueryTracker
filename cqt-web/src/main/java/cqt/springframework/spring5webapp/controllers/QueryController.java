@@ -1,6 +1,6 @@
 package cqt.springframework.spring5webapp.controllers;
 
-import cqt.springframework.spring5webapp.repositories.QueryRepository;
+import cqt.springframework.spring5webapp.services.QueryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,17 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class QueryController {
 
     // == fields ==
-    private QueryRepository queryRepository;
+    private QueryService queryService;
 
     // == constructor ==
-    public QueryController(QueryRepository queryRepository) {
-        this.queryRepository = queryRepository;
+
+
+    public QueryController(QueryService queryService) {
+        this.queryService = queryService;
     }
 
     // == request handler ==
     @RequestMapping({"", "/", "/index", "/index.html"})
     public String getQueries(Model model) {
-        model.addAttribute("queries", queryRepository.findAll());
+        model.addAttribute("queries", queryService.findAll());
         return "queries/index";
     }
 }

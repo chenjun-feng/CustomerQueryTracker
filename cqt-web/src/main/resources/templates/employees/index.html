@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'employees')}">
 <head>
     <meta charset="UTF-8">
     <title>Employee List</title>
 </head>
 <body>
+<!--/*@thymesVar id="employee" type="cqt.springframework.spring5webapp.model.Employee"*/-->
 <div align="center">
 
     <h1>List of Employees</h1>
 
-    <table border="1" cellpadding="8" style="border-collapse:collapse">
+    <table class="table table-striped">
         <tr>
             <th>Employee ID</th>
             <th>Name</th>
@@ -20,9 +21,9 @@
         </tr>
         <tr th:each="employee: ${employees}">
             <td th:text="${employee.e_id}">123</td>
-            <td th:text="${employee.e_name}">Saran</td>
+            <td th:text="${employee.eName}">Saran</td>
             <td th:text="${employee.e_email}">saran@cogent.com</td>
-            <td th:text="${employee.department}">Technology Department</td>
+            <td th:text="${#strings.replace(employee.department,'_',' ')}">Technology Department</td>
             <td th:text="${employee.e_role}">Staff</td>
             <td th:text="${employee.e_workload}">12</td>
         </tr>

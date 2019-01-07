@@ -1,9 +1,6 @@
 package cqt.springframework.spring5webapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -13,6 +10,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "o_id")
+@Builder
 @Entity(name = "orders")
 public class Order {
 

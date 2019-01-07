@@ -1,6 +1,6 @@
 package cqt.springframework.spring5webapp.controllers;
 
-import cqt.springframework.spring5webapp.repositories.EmployeeRepository;
+import cqt.springframework.spring5webapp.services.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class EmployeeController {
 
     // == fields ==
-    private EmployeeRepository employeeRepository;
+    private EmployeeService employeeService;
 
     // == constructor ==
-    public EmployeeController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     // == request handler ==
     @RequestMapping({"", "/", "/index", "/index.html"})
     public String getEmployees(Model model) {
-        model.addAttribute("employees", employeeRepository.findAll());
+        model.addAttribute("employees", employeeService.findAll());
         return "employees/index";
     }
 }

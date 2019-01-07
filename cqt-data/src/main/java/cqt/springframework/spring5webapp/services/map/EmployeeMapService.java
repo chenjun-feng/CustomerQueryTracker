@@ -2,12 +2,14 @@ package cqt.springframework.spring5webapp.services.map;
 
 import cqt.springframework.spring5webapp.model.Employee;
 import cqt.springframework.spring5webapp.services.EmployeeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class EmployeeServiceMap extends AbstractMapService<Employee, Long> implements EmployeeService {
+@Profile({"default", "map"})
+public class EmployeeMapService extends AbstractMapService<Employee, Long> implements EmployeeService {
 
     @Override
     public Set<Employee> findAll() {
@@ -35,7 +37,7 @@ public class EmployeeServiceMap extends AbstractMapService<Employee, Long> imple
     }
 
     @Override
-    public Employee findByName(String name) {
+    public Employee findByEName(String name) {
         return null;
     }
 }

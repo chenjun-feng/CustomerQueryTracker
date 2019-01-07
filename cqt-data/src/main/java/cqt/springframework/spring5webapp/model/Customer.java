@@ -1,17 +1,16 @@
 package cqt.springframework.spring5webapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "c_id")
+@Builder
 @Entity(name = "customers")
 public class Customer {
 
@@ -19,14 +18,15 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false, nullable = false)
     private Long c_id;
-    private String c_name;
+    @Column(name = "c_name")
+    private String cName;
     private String c_password;
     private String c_email;
     private boolean c_status;
-    @OneToMany(mappedBy = "o_customer")
-    private List<Order> c_orders;
-    @OneToMany(mappedBy = "q_customer")
-    private List<Query> c_queries;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "o_customer")
+    private Set<Order> c_orders = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "q_customer")
+    private Set<Query> c_queries = new HashSet<>();
 
 }
 

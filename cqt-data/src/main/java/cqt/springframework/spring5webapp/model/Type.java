@@ -1,17 +1,16 @@
 package cqt.springframework.spring5webapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "t_id")
+@Builder
 @Entity(name = "types")
 public class Type {
 
@@ -22,6 +21,6 @@ public class Type {
     private String t_name;
     private String department;
     @OneToMany(mappedBy = "q_type")
-    private List<Query> t_queries;
+    private Set<Query> t_queries = new HashSet<>();
 
 }

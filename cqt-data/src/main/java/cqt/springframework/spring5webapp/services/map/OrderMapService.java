@@ -2,12 +2,14 @@ package cqt.springframework.spring5webapp.services.map;
 
 import cqt.springframework.spring5webapp.model.Order;
 import cqt.springframework.spring5webapp.services.OrderService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class OrderServiceMap extends AbstractMapService<Order, Long> implements OrderService {
+@Profile({"default", "map"})
+public class OrderMapService extends AbstractMapService<Order, Long> implements OrderService {
 
     @Override
     public Set<Order> findAll() {

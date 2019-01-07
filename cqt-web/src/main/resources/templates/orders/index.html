@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'orders')}">
 <head>
     <meta charset="UTF-8">
     <title>Order List</title>
@@ -9,9 +9,9 @@
 
     <div align="center">
 
-    <h1>List of Orders</h1>
+    <h2>List of Orders</h2>
 
-    <table border="1" cellpadding="8" style="border-collapse:collapse">
+    <table class="table table-striped">
         <tr>
             <th>Order ID</th>
             <th>Date</th>
