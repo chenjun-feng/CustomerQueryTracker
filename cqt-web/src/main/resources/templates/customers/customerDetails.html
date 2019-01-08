@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'customers')}">
+
+  <body>
+  
+  
+    <h2>Customer Information</h2>
+  
+  
+    <table class="table table-striped" th:object="${customer}">
+      <tr>
+        <th>Name</th>
+        <td><b th:text="*{cName}"></b></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td th:text="*{c_email}" /></td>
+      </tr>
+      <tr>
+        <th>Status</th>
+        <td th:text="*{c_status}" /></td>
+      </tr>
+    </table>
+  
+    <a th:href="@{{id}/edit(id=${customer.c_id})}" class="btn btn-default">Edit Customer</a>
+    <a th:href="@{{id}/pets/new(id=${customer.c_id})}" class="btn btn-default">Add New Order</a>
+    <a th:href="@{{id}/pets/new(id=${customer.c_id})}" class="btn btn-default">Open New Query</a>
+  
+    <br/>
+    <br/>
+    <br/>
+
+    <h2>Queries</h2>
+
+    <table class="table table-striped">
+        <tr th:each="query : ${customer.c_queries}">
+            <td valign="top">
+                <dl class="dl-horizontal">
+                    <dt>Query ID</dt>
+                    <dd th:text="${query.q_id}"/>
+                    <dt>Status</dt>
+                    <dd th:text="${query.q_status}"/>
+                    <dt>Query Type</dt>
+                    <dd th:text="${query.q_type.t_name}"/>
+                    <dt>Associated Order ID</dt>
+                    <dd th:text="${query.q_order.o_id}"/>
+                    <dt>Associated Employee</dt>
+                    <dd th:text="${query.q_employee.eName}"/>
+                    <dt>Feedback Score</dt>
+                    <dd>
+                        <span th:if="${query.q_feedback == -1}">No feedback left</span>
+                        <span th:unless="${query.q_feedback == -1}" th:text="${query.q_feedback}"/>
+                    </dd>
+                </dl>
+            </td>
+        </tr>
+    </table>
+
+
+
+    <h2>Orders</h2>
+  
+    <table class="table table-striped">
+  
+      <tr th:each="order : ${customer.c_orders}">
+        <td valign="top">
+          <dl class="dl-horizontal">
+            <dt>Order ID</dt>
+            <dd th:text="${order.o_id}" /></dd>
+            <dt>Purchase Date</dt>
+            <dd
+              th:text="${#temporals.format(order.o_date, 'yyyy-MM-dd')}" /></dd>
+            <dt>Total Amount</dt>
+            <dd th:text="${'$' + order.o_amount}" /></dd>
+          </dl>
+        </td>
+        <!--
+        <td valign="top">
+          <table class="table-condensed">
+            <thead>
+              <tr>
+                <th>Visit Date</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tr th:each="visit : ${pet.visits}">
+              <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}"></td>
+              <td th:text="${visit?.description}"></td>
+            </tr>
+            <tr>
+              <td><a
+                th:href="@{{ownerId}/pets/{petId}/edit(ownerId=${owner.id},petId=${pet.id})}">Edit
+                  Pet</a></td>
+              <td><a
+                th:href="@{{ownerId}/pets/{petId}/visits/new(ownerId=${owner.id},petId=${pet.id})}">Add
+                  Visit</a></td>
+            </tr>
+          </table>
+        </td>
+        -->
+      </tr>
+  
+    </table>
+  
+  </body>
+
+</html>

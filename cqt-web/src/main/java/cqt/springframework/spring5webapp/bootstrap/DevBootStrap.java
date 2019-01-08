@@ -5,7 +5,7 @@ import cqt.springframework.spring5webapp.repositories.*;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 //@Component
 public class DevBootStrap implements ApplicationListener<ContextRefreshedEvent> {
@@ -45,12 +45,12 @@ public class DevBootStrap implements ApplicationListener<ContextRefreshedEvent> 
         c2.setC_status(true);
 
         Order o1 = new Order();
-        o1.setO_date(Date.valueOf("2018-01-01"));
+        o1.setO_date(LocalDate.now());
         o1.setO_amount(1.11);
         o1.setO_customer(c1);
 
         Order o2 = new Order();
-        o2.setO_date(Date.valueOf("2018-01-02"));
+        o2.setO_date(LocalDate.now());
         o2.setO_amount(1.12);
         o2.setO_customer(c1);
 

@@ -5,6 +5,7 @@ import cqt.springframework.spring5webapp.services.CustomerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -43,5 +44,11 @@ public class CustomerMapService extends AbstractMapService<Customer, Long> imple
                 .filter(customer -> customer.getCName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Customer> findAllByCNameLike(String name) {
+        // todo - impl
+        return null;
     }
 }

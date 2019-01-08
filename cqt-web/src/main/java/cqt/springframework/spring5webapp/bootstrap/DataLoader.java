@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Slf4j
 @Component
@@ -57,14 +57,14 @@ public class DataLoader implements CommandLineRunner {
 
         Order o1 = new Order();
         //o1.setO_id(3L);
-        o1.setO_date(Date.valueOf("2018-01-01"));
+        o1.setO_date(LocalDate.now());
         o1.setO_amount(1.11);
         o1.setO_customer(c1);
         orderService.save(o1);
 
         Order o2 = new Order();
         //o2.setO_id(4L);
-        o2.setO_date(Date.valueOf("2018-01-02"));
+        o2.setO_date(LocalDate.now());
         o2.setO_amount(1.12);
         o2.setO_customer(c1);
         orderService.save(o2);
@@ -100,6 +100,16 @@ public class DataLoader implements CommandLineRunner {
         q1.setQ_order(o1);
         q1.setQ_employee(e1);
         queryService.save(q1);
+
+        Query q2 = new Query();
+        //q1.setQ_id(7L);
+        q2.setQ_status(true);
+        q2.setQ_feedback(3);
+        q2.setQ_type(t1);
+        q2.setQ_customer(c1);
+        q2.setQ_order(o2);
+        q2.setQ_employee(e1);
+        queryService.save(q2);
 
         System.out.println("Loaded Queries......");
     }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'customers')}">
+
+  <body>
+
+    <h2>Owners</h2>
+
+    <table id="customers" class="table table-striped">
+        <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="customer : ${selections}">
+              <td>
+                  <a th:href="@{/customers/__${customer.c_id}__}" th:text="${customer.c_id}"/></a>
+              </td>
+              <td>
+                  <a th:href="@{/customers/__${customer.c_id}__}" th:text="${customer.cName}"/></a>
+              </td>
+              <td th:text="${customer.c_email}"/>
+              <td th:text="${customer.c_status}"/>
+          </tr>
+        </tbody>
+    </table>
+
+  </body>
+</html>

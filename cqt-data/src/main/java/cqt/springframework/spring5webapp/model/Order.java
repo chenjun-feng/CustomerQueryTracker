@@ -1,10 +1,10 @@
 package cqt.springframework.spring5webapp.model;
 
 import lombok.*;
-import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -18,8 +18,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false, nullable = false)
     private Long o_id;
-    @Type(type = "date")
-    private Date o_date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate o_date;
     private double o_amount;
     @ManyToOne
     private Customer o_customer;
