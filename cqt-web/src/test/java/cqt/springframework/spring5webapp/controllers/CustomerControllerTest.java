@@ -5,6 +5,7 @@ import cqt.springframework.spring5webapp.services.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -21,9 +22,9 @@ import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -60,6 +61,51 @@ public class CustomerControllerTest {
 
         verifyZeroInteractions(customerService);
     }
+
+    @Test
+    public void initCreationForm() throws Exception {
+        mockMvc.perform(get("/customers/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("customers/createOrUpdateCustomerForm"))
+                .andExpect(model().attributeExists("customer"));
+    }
+
+    @Test
+    public void processCreationForm() throws Exception {
+        when(customerService.save(ArgumentMatchers.any())).thenReturn(Customer.builder().c_id(1L).build());
+
+        mockMvc.perform(post("/customers/new"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/customers/1"))
+                .andExpect(model().attributeExists("customer"));
+
+        verify(customerService).save(ArgumentMatchers.any());
+    }
+
+    @Test
+    public void initUpdateCustomerForm() throws Exception {
+        when(customerService.findById(anyLong())).thenReturn(Customer.builder().c_id(1L).build());
+
+        mockMvc.perform(get("/customers/1/edit"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("customers/createOrUpdateCustomerForm"))
+                .andExpect(model().attributeExists("customer"));
+
+        verifyZeroInteractions(customerService);
+    }
+
+    @Test
+    public void processUpdateCustomerForm() throws Exception {
+        when(customerService.save(ArgumentMatchers.any())).thenReturn(Customer.builder().c_id(1L).build());
+
+        mockMvc.perform(post("/customers/1/edit"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/customers/1"))
+                .andExpect(model().attributeExists("customer"));
+
+        verify(customerService).save(ArgumentMatchers.any());
+    }
+
 
     @Test
     public void processFindFormReturnMany() throws Exception{

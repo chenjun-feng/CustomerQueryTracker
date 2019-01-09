@@ -28,5 +28,10 @@ public class Customer {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "q_customer")
     private Set<Query> c_queries = new HashSet<>();
 
+    // == methods ==
+    public boolean isNew() {
+        return this.c_id == null;
+    }
+
 }
 

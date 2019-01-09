@@ -7,12 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/customers")
@@ -21,6 +19,8 @@ import java.util.List;
 public class CustomerController {
 
     // == fields ==
+    private static final String VIEWS_CUSTOMER_CREATE_OR_UPDATE_FORM = "customers/createOrUpdateCustomerForm";
+
     private final CustomerService customerService;
 
     // == constructor ==
@@ -76,5 +76,38 @@ public class CustomerController {
         ModelAndView mav = new ModelAndView("customers/customerDetails");
         mav.addObject(customerService.findById(customerId));
         return mav;
+    }
+
+    @GetMapping("/new")
+    public String initCreationForm(Model model) {
+        model.addAttribute("customer", Customer.builder().build());
+        return VIEWS_CUSTOMER_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/new")
+    public String processCreationForm(@Valid Customer customer, BindingResult result) {
+        if (result.hasErrors()) {
+            return VIEWS_CUSTOMER_CREATE_OR_UPDATE_FORM;
+        } else {
+            Customer savedCustomer = customerService.save(customer);
+            return "redirect:/customers/" + savedCustomer.getC_id();
+        }
+    }
+
+    @GetMapping("/{customerId}/edit")
+    public String initUpdateCustomerForm(@PathVariable("customerId") Long customerId, Model model) {
+        model.addAttribute(customerService.findById(customerId));
+        return VIEWS_CUSTOMER_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/{customerId}/edit")
+    public String processUpdateCustomerForm(@Valid Customer customer, BindingResult result, @PathVariable("customerId") Long customerId) {
+        if (result.hasErrors()) {
+            return VIEWS_CUSTOMER_CREATE_OR_UPDATE_FORM;
+        } else {
+            customer.setC_id(customerId);
+            Customer savedCustomer = customerService.save(customer);
+            return "redirect:/customers/" + savedCustomer.getC_id();
+        }
     }
 }
