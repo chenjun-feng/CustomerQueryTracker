@@ -25,8 +25,7 @@
     </table>
   
     <a th:href="@{{id}/edit(id=${customer.c_id})}" class="btn btn-default">Edit Customer</a>
-    <a th:href="@{{id}/pets/new(id=${customer.c_id})}" class="btn btn-default">Add New Order</a>
-    <a th:href="@{{id}/pets/new(id=${customer.c_id})}" class="btn btn-default">Open New Query</a>
+    <a th:href="@{{id}/queries/new(id=${customer.c_id})}" class="btn btn-default">Create New Query</a>
   
     <br/>
     <br/>
@@ -50,7 +49,7 @@
                     <dd th:text="${query.q_employee.eName}"/>
                     <dt>Feedback Score</dt>
                     <dd>
-                        <span th:if="${query.q_feedback == -1}">No feedback left</span>
+                        <span th:if="${query.q_feedback == -1}">Pending</span>
                         <span th:unless="${query.q_feedback == -1}" th:text="${query.q_feedback}"/>
                     </dd>
                 </dl>

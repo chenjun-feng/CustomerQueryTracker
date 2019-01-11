@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'customers')}">
+
+<body>
+
+  <h2>
+    <th:block th:if="${query['new']}">New </th:block>
+    Query
+  </h2>
+
+  <form th:object="${query}" class="form-horizontal" method="post">
+
+      <input type="hidden" name="q_id" th:value="*{q_id}" />
+
+      <input type="hidden" name="q_feedback" th:value="-1" />
+
+      <input type="hidden" name="q_status" th:value="1" />
+
+      <input type="hidden" name="q_customer_c_id" th:value="${customer.c_id}" />
+
+      <div class="form-group has-feedback">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Customer</label>
+        <div class="col-sm-10">
+          <span th:text="${customer.cName}" />
+        </div>
+      </div>
+        <input th:replace="~{fragments/selectField :: select ('For Order', 'q_order', ${orders})}" />
+        <input th:replace="~{fragments/selectField :: select ('Query Reason', 'q_type', ${types})}" />
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button
+          th:with="text=${query['new']} ? 'Add Query' : 'Update Query'"
+          class="btn btn-default" type="submit" th:text="${text}">Add
+          Query</button>
+      </div>
+    </div>
+  </form>
+
+</body>
+
+</html>

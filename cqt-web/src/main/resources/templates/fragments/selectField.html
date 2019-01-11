@@ -9,8 +9,8 @@
 
         <div class="col-sm-10">
           <select th:field="*{__${name}__}">
-            <option th:each="item : ${items}" th:value="${item}"
-              th:text="${item}">dog</option>
+            <option th:each="item : ${items}" th:value="${#strings.substring(item,4,6)}"
+              th:text="${item}">text</option>
           </select>
           <span th:if="${valid}"
             class="glyphicon glyphicon-ok form-control-feedback"

@@ -26,4 +26,9 @@ public class Query {
     private Order q_order;
     @ManyToOne
     private Employee q_employee;
+
+    // == methods ==
+    public boolean isNew() {
+        return this.q_id == null;
+    }
 }

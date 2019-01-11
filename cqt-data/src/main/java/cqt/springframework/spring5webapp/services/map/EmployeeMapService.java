@@ -1,10 +1,12 @@
 package cqt.springframework.spring5webapp.services.map;
 
+import cqt.springframework.spring5webapp.model.Department;
 import cqt.springframework.spring5webapp.model.Employee;
 import cqt.springframework.spring5webapp.services.EmployeeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -38,6 +40,16 @@ public class EmployeeMapService extends AbstractMapService<Employee, Long> imple
 
     @Override
     public Employee findByEName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Employee> findAllByDepartment(Department department) {
+        return null;
+    }
+
+    @Override
+    public Employee selectLowestWorkloadEmployee(Department department) {
         return null;
     }
 }

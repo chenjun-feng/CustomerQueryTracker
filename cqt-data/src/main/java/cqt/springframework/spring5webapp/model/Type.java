@@ -19,8 +19,14 @@ public class Type {
     @Column(updatable = false, nullable = false)
     private Long t_id;
     private String t_name;
-    private String department;
+    private Department department;
     @OneToMany(mappedBy = "q_type")
     private Set<Query> t_queries = new HashSet<>();
+
+    @Override
+    public String toString() {
+        //return "" + t_id;
+        return "ID: " + t_id + " , Reason: " + t_name;
+    }
 
 }

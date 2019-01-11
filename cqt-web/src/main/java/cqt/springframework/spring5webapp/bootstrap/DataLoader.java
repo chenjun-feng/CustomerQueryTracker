@@ -58,36 +58,55 @@ public class DataLoader implements CommandLineRunner {
         Order o1 = new Order();
         //o1.setO_id(3L);
         o1.setO_date(LocalDate.now());
-        o1.setO_amount(1.11);
+        o1.setO_amount(111);
         o1.setO_customer(c1);
         orderService.save(o1);
 
         Order o2 = new Order();
         //o2.setO_id(4L);
         o2.setO_date(LocalDate.now());
-        o2.setO_amount(1.12);
+        o2.setO_amount(222);
         o2.setO_customer(c1);
         orderService.save(o2);
+
+        Order o3 = new Order();
+        o3.setO_date(LocalDate.now());
+        o3.setO_amount(333);
+        o3.setO_customer(c1);
+        orderService.save(o3);
 
         System.out.println("Loaded Orders......");
 
         Type t1 = new Type();
         //t1.setT_id(5L);
         t1.setT_name("Defect Product");
-        t1.setDepartment("Customer Service Department");
+        t1.setDepartment(Department.CUSTOMER_SERVICE_DEPARTMENT);
         typeService.save(t1);
+
+        Type t2 = new Type();
+        t2.setT_name("Late Delivery");
+        t2.setDepartment(Department.CUSTOMER_SERVICE_DEPARTMENT);
+        typeService.save(t2);
 
         System.out.println("Loaded Query Types......");
 
         Employee e1 = new Employee();
-        //e1.setE_id(6L);
         e1.setEName("John");
         e1.setE_password("john123");
         e1.setE_email("john@amazon.com");
         e1.setDepartment(Department.CUSTOMER_SERVICE_DEPARTMENT);
         e1.setE_role("staff");
-        e1.setE_workload(1);
+        e1.setE_workload(10);
         employeeService.save(e1);
+
+        Employee e2 = new Employee();
+        e2.setEName("Mary");
+        e2.setE_password("mary123");
+        e2.setE_email("mary@amazon.com");
+        e2.setDepartment(Department.CUSTOMER_SERVICE_DEPARTMENT);
+        e2.setE_role("staff");
+        e2.setE_workload(5);
+        employeeService.save(e2);
 
         System.out.println("Loaded Employees......");
 

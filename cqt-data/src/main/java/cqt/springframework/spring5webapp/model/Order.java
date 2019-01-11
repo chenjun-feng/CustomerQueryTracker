@@ -24,5 +24,10 @@ public class Order {
     @ManyToOne
     private Customer o_customer;
 
+    @Override
+    public String toString() {
+        //return "" + o_id;
+        return "ID: " + o_id + " , Date: " + o_date + " , Amount: $" + o_amount;
+    }
 }
 

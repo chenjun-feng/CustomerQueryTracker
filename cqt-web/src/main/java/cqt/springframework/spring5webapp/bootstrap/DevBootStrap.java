@@ -56,7 +56,7 @@ public class DevBootStrap implements ApplicationListener<ContextRefreshedEvent> 
 
         Type t1 = new Type();
         t1.setT_name("Defect Product");
-        t1.setDepartment("Customer Service Department");
+        t1.setDepartment(Department.CUSTOMER_SERVICE_DEPARTMENT);
 
         Employee e1 = new Employee();
         e1.setEName("John");
